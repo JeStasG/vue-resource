@@ -1037,8 +1037,6 @@ function xhrClient (request) {
 
         request.abort = function () { return xhr.abort(); };
 
-        xhr.open(request.method, request.getUrl(), true);
-
         if (request.timeout) {
             xhr.timeout = request.timeout;
         }
@@ -1076,6 +1074,8 @@ function xhrClient (request) {
         request.headers.forEach(function (value, name) {
             xhr.setRequestHeader(name, value);
         });
+
+        xhr.open(request.method, request.getUrl(), true);
 
         xhr.onload = handler;
         xhr.onabort = handler;
