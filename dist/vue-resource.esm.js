@@ -1047,6 +1047,8 @@ function xhrClient (request) {
             xhr.withCredentials = true;
         }
 
+        xhr.open(request.method, request.getUrl(), true);
+
         if (!request.crossOrigin) {
             request.headers.set('X-Requested-With', 'XMLHttpRequest');
         }
@@ -1072,8 +1074,6 @@ function xhrClient (request) {
         request.headers.forEach(function (value, name) {
             xhr.setRequestHeader(name, value);
         });
-
-        xhr.open(request.method, request.getUrl(), true);
 
         xhr.onload = handler;
         xhr.onabort = handler;
