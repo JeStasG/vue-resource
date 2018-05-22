@@ -25,8 +25,6 @@ export default function (request) {
 
         request.abort = () => xhr.abort();
 
-        xhr.open(request.method, request.getUrl(), true);
-
         if (request.timeout) {
             xhr.timeout = request.timeout;
         }
@@ -64,6 +62,8 @@ export default function (request) {
         request.headers.forEach((value, name) => {
             xhr.setRequestHeader(name, value);
         });
+
+        xhr.open(request.method, request.getUrl(), true);
 
         xhr.onload = handler;
         xhr.onabort = handler;
